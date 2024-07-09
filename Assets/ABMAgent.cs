@@ -7,7 +7,7 @@ using Unity.MLAgents.Actuators;
 
 public class ABMAgent : Agent
 {
-    private ABMController controller;
+    protected ABMController controller;
     private bool readyToStep = false;
     protected ActionBuffers actions;
 

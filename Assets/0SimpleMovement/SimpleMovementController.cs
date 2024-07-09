@@ -11,7 +11,7 @@ public class SimpleMovementController : ABMController
         agents.ForEach(a => {
             if(isEnd) { return; }
 
-            if(Distance(a)>boundsRadius) { a.AddReward(-1f); isEnd = true; EndAll(); }
+            if(Distance(a)>boundsRadius || a.StepCount >= a.MaxStep) { isEnd = true; EndAll(); }
         });
     }
 

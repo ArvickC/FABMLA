@@ -30,6 +30,7 @@ public class ABMController : MonoBehaviour
 
     protected void EndAll() { // End episode for all agents
         agents.ForEach(a => a.EndEpisode());
+        SetupEpisode();
     }
 
     protected virtual void EndCase() {
@@ -40,4 +41,5 @@ public class ABMController : MonoBehaviour
         });
     }
     protected virtual void CalculateReward(ABMAgent agent) {}
+    protected virtual void SetupEpisode() {}
 }
