@@ -86,4 +86,6 @@ public class ABMController : MonoBehaviour {
         agents.Remove(a);
         Destroy(a.gameObject);
     }
+
+    public void CheckToEndEpisode() { EndCase(); }
 }

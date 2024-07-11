@@ -72,8 +72,9 @@ public class SugarscapeAgent : ABMAgent {
 
     private void OnTriggerEnter(Collider c) { // Hit another agent
         if(!c.gameObject.CompareTag("Agent")) return;
-        if(sugar < c.gameObject.GetComponent<SugarscapeAgent>().id) controller.ClearAgent(this);
-        if(id < c.gameObject.GetComponent<SugarscapeAgent>().id) controller.ClearAgent(this);
+        if(sugar < c.gameObject.GetComponent<SugarscapeAgent>().id) { controller.ClearAgent(this); }
+        if(id < c.gameObject.GetComponent<SugarscapeAgent>().id) { controller.ClearAgent(this); }
+        controller.CheckToEndEpisode();
     }
 
     private void ResetAgent() {
