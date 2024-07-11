@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 
-public class SimpleNavAgent : ABMAgent
-{
+public class SimpleNavAgent : ABMAgent {
     public float boundsRadius = 5f;
     private Rigidbody rb;
-    public override void Initialize()
-    {
+
+    public override void Initialize() {
         base.Initialize();
         rb = this.GetComponent<Rigidbody>();
         ResetAgent();
@@ -16,14 +15,12 @@ public class SimpleNavAgent : ABMAgent
 
     public override void OnEpisodeBegin() { ResetAgent(); }
 
-    public override void CollectObservations(VectorSensor sensor)
-    {
-        sensor.AddObservation(this.transform.localPosition); // 3
-        sensor.AddObservation(controller.GetComponent<SimpleNavController>().target.transform.localPosition); // 3
+    public override void CollectObservations(VectorSensor sensor) { // Total -> 3 + 3 = 6
+        sensor.AddObservation(this.transform.localPosition); // Vector3 -> 3
+        sensor.AddObservation(controller.GetComponent<SimpleNavController>().target.transform.localPosition); // Vector3 -> 3
     }
 
-    public override void Step()
-    {
+    public override void Step() {
         base.Step();
         
         Vector3 controlSignal = Vector3.zero;

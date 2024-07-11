@@ -5,13 +5,11 @@ using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 
-public class SimpleMovementAgent : ABMAgent
-{
+public class SimpleMovementAgent : ABMAgent {
     public Vector3 initialState = Vector3.zero;
     private Rigidbody rb;
 
-    public override void Initialize()
-    {
+    public override void Initialize() {
         base.Initialize();
         rb = GetComponent<Rigidbody>();
         ResetAgent();
@@ -20,7 +18,7 @@ public class SimpleMovementAgent : ABMAgent
     public override void OnEpisodeBegin() { ResetAgent(); }
 
     public override void CollectObservations(VectorSensor sensor) { 
-        sensor.AddObservation(this.transform.localPosition); // 3
+        sensor.AddObservation(this.transform.localPosition); // Vector3 -> 3
     }
 
     public override void Step() {
