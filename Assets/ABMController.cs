@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
 using System.Linq;
+using Unity.MLAgents.Policies;
 
 /// <summary>
 /// Agent-Based Modeling Controller Class. Used to control the system. It synchronises the Step()s of the Agents
@@ -18,7 +19,11 @@ public class ABMController : MonoBehaviour {
     /// <summary>
     /// Built-in Unity3D method. Called on scene setup. Reference Unity3D documentation for more information
     /// </summary>
-    protected virtual void Start() { SetupEpisode(); }
+    protected virtual void Start() { 
+        for(int i=0;i<agentAmount;i++) {
+            GameObject a = Instantiate(simulationAgent); // Make Agents
+        }
+     }
 
     /// <summary>
     /// Registers an Agent into the controller
@@ -68,9 +73,7 @@ public class ABMController : MonoBehaviour {
     /// Sets up the current episode
     /// </summary>
     protected virtual void SetupEpisode() {
-        for(int i=0;i<agentAmount;i++) {
-            GameObject a = Instantiate(simulationAgent); // Make Agents
-        }
+    
     }
 
     /// <summary>
@@ -88,4 +91,8 @@ public class ABMController : MonoBehaviour {
     }
 
     public void CheckToEndEpisode() { EndCase(); }
+
+    public void SetTeamId(ABMAgent a, int id) {
+        a.GetComponent<BehaviorParameters>().TeamId = id;
+    }
 }

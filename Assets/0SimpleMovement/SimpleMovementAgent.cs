@@ -4,8 +4,12 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
+using System;
 
 public class SimpleMovementAgent : ABMAgent {
+    public override int vectorObservationSpaceSize => 3;
+    public override int vectorStackSize => 1;
+    public override String behaviorName => "SimpleMovementAgent";
     public Vector3 initialState = Vector3.zero;
     private Rigidbody rb;
 

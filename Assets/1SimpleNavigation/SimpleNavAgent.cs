@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 
 public class SimpleNavAgent : ABMAgent {
+    public override int vectorObservationSpaceSize => 6;
+    public override int vectorStackSize => 1;
+    public override String behaviorName => "SimpleNavAgent";
     public float boundsRadius = 5f;
     private Rigidbody rb;
 

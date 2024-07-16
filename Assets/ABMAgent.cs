@@ -4,11 +4,18 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
+using Unity.MLAgents.Policies;
+using System;
 
 /// <summary>
 /// Agent-Based Modeling Agent Class. Used to model a single agent within a system. 
 /// </summary> 
-public class ABMAgent : Agent {
+public abstract class ABMAgent : Agent {
+    [Header("Params")]
+    abstract public int vectorObservationSpaceSize { get; }
+    abstract public int vectorStackSize { get; }
+    abstract public String behaviorName { get; }
+
     protected ABMController controller;
     protected ActionBuffers actions;
 
@@ -20,6 +27,10 @@ public class ABMAgent : Agent {
     public override void Initialize() {
         controller = FindFirstObjectByType<ABMController>(); // Get Controller
         controller.RegisterAgent(this);
+
+        GetComponent<BehaviorParameters>().BrainParameters.VectorObservationSize = vectorObservationSpaceSize;
+        GetComponent<BehaviorParameters>().BrainParameters.NumStackedVectorObservations = vectorStackSize;
+        GetComponent<BehaviorParameters>().BehaviorName = behaviorName;
     }
 
     /// <summary>
