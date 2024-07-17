@@ -11,6 +11,10 @@ public class SugarscapeController : ABMController {
     public Dictionary<Vector3, SugarblockManager> grid = new Dictionary<Vector3, SugarblockManager>();
     public int radius = 8;
 
+    protected override void Start() {
+        SetupEpisode();
+    }
+
     protected override void EndCase() {
         bool isEnd = false;
         agents.ToList().ForEach(a => {
@@ -43,7 +47,7 @@ public class SugarscapeController : ABMController {
                 SetGrid(x, y);
             }
         }
-
+        
         for(int i=0;i<agentAmount;i++) {
             GameObject a = Instantiate(simulationAgent); // Make agents
         }
@@ -64,6 +68,6 @@ public class SugarscapeController : ABMController {
         m.Add(sugarMaterials[r-1]);
         g.GetComponent<MeshRenderer>().SetMaterials(m);
 
-        grid.Add(g.transform.position, g.GetComponent<SugarblockManager>()); // Register cube
+        grid.Add(g.transform.localPosition, g.GetComponent<SugarblockManager>()); // Register cube
     }
 }

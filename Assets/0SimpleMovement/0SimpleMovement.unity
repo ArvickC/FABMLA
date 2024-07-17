@@ -589,7 +589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   simulationAgent: {fileID: 4251272035798660441, guid: 2d912aec1731541e8a4a38a1c6c19a4f,
     type: 3}
-  agentAmount: 50
+  agentAmount: 1
   boundsRadius: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

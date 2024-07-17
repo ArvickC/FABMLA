@@ -1,5 +1,5 @@
 behaviors:
-  PongAgent:
+  Pong2D:
     trainer_type: ppo
     hyperparameters:
       batch_size: 10

@@ -28,10 +28,10 @@ public class SimpleNavController : ABMController {
     }
 
     protected override void SetupEpisode() {
-        target.transform.localPosition = new Vector3(RandomRadius(), RandomRadius(), RandomRadius()); // Spawn Randomly
+        target.transform.localPosition = new Vector3(RandomRadius(1.5f), RandomRadius(1.5f), RandomRadius(1.5f)); // Spawn Randomly
     }
 
-    private float RandomRadius() {
-        return Random.Range(-boundsRadius+0.5f, boundsRadius-0.5f);
+    public float RandomRadius(float sub) {
+        return Random.Range(-boundsRadius-sub, boundsRadius-sub);
     }
 }
