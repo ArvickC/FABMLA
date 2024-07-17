@@ -8,6 +8,9 @@ using Unity.MLAgents.Sensors;
 using UnityEngine;
 
 public class SugarscapeAgent : ABMAgent {
+    public override int vectorObservationSpaceSize => 8;
+    public override int vectorStackSize => 1;
+    public override String behaviorName => "SugarscapeAgent";
     public int sugar;
     [HideInInspector] public float id;
     private int metabolism;
