@@ -9,6 +9,8 @@ TagManager:
   - Target
   - PurpleGoal
   - BlueGoal
+  - Plate
+  - Door
   layers:
   - Default
   - TransparentFX

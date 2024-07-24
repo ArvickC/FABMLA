@@ -22,6 +22,7 @@ public class ABMController : MonoBehaviour {
     protected virtual void Start() { 
         for(int i=0;i<agentAmount;i++) {
             GameObject a = Instantiate(simulationAgent); // Make Agents
+            a.transform.SetParent(this.gameObject.transform, false);
         }
      }
 
@@ -72,9 +73,7 @@ public class ABMController : MonoBehaviour {
     /// <summary>
     /// Sets up the current episode
     /// </summary>
-    protected virtual void SetupEpisode() {
-    
-    }
+    protected virtual void SetupEpisode() {}
 
     /// <summary>
     /// Remove all Agents from a scene
