@@ -21,6 +21,9 @@ public class Pong2DContorller : ABMController {
     public float agentSpeed = 5f;
     public int spawn = -8;
 
+    int step;
+    bool winner;
+
     protected override void Start() {
         Spawn(Team.Blue, out blue);
         Spawn(Team.Purple, out purple);
@@ -41,6 +44,7 @@ public class Pong2DContorller : ABMController {
     protected override void EndCase() {
         bool isEnd = false;
         agents.ToList().ForEach(a => {
+            step = a.StepCount;
             if(isEnd) return;
             if(a.MaxStep > 0 && a.StepCount >= a.MaxStep) { isEnd = true; EndAll(); } // Max stepcount reached
         });
@@ -48,11 +52,13 @@ public class Pong2DContorller : ABMController {
 
     public void Score(Team team, GameObject goal) {
         if(team == Team.Blue) { // Blue scored
+            winner = true;
             blue.AddReward(1f);
             purple.AddReward(-1f);
             StartCoroutine(Color(goal, m[2]));
             EndAll();
         } else if(team == Team.Purple) { // Purple scored
+            winner = false;
             blue.AddReward(-1f);
             purple.AddReward(1f);
             StartCoroutine(Color(goal, m[1]));
@@ -65,6 +71,7 @@ public class Pong2DContorller : ABMController {
     }
 
     protected override void SetupEpisode() {
+        base.SetupEpisode();
         ball.Launch();
         blue.transform.localPosition = new Vector3(spawn, Random.Range(-3.7f, 2.5f), 0);
         purple.transform.localPosition = new Vector3(-spawn, Random.Range(-3.7f, 2.5f), 0);
@@ -74,6 +81,10 @@ public class Pong2DContorller : ABMController {
         goal.GetComponent<MeshRenderer>().material = m[0];
         yield return new WaitForSeconds(0.5f);
         goal.GetComponent<MeshRenderer>().material = mat;
+    }
+
+    protected override System.String Log() {
+        return $"{step}, {winner}";
     }
 
     // DEBUG

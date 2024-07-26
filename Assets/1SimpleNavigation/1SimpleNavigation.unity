@@ -553,6 +553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 878729209}
   - component: {fileID: 878729210}
+  - component: {fileID: 878729211}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -592,6 +593,24 @@ MonoBehaviour:
   agentAmount: 20
   boundsRadius: 5
   target: {fileID: 1977206305}
+--- !u!114 &878729211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878729208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fdb28c4511fb4d21bf95a42599d0fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  episode: 0
+  maxEpisode: 5000
+  timeScale: 50
+  logToFile: 1
+  filePath: 
+  fileName: SIMPLENAV
 --- !u!1 &1977206305
 GameObject:
   m_ObjectHideFlags: 0

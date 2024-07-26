@@ -4,17 +4,24 @@ using UnityEngine;
 using Unity.MLAgents;
 using System.Linq;
 using Unity.MLAgents.Policies;
+using UnityEngine.SceneManagement;
+using System;
 
 /// <summary>
 /// Agent-Based Modeling Controller Class. Used to control the system. It synchronises the Step()s of the Agents
 /// </summary> 
 public class ABMController : MonoBehaviour {
     protected List<ABMAgent> agents = new List<ABMAgent>(); // List of all agents in scene
+    private ABMLogger logger;
 
     private bool allAgentsReady = false;
 
     public GameObject simulationAgent; // Reference to Agent Prefab
     public int agentAmount = 1;
+
+    void Awake() {
+        TryGetComponent<ABMLogger>(out logger);
+    }
 
     /// <summary>
     /// Built-in Unity3D method. Called on scene setup. Reference Unity3D documentation for more information
@@ -73,7 +80,17 @@ public class ABMController : MonoBehaviour {
     /// <summary>
     /// Sets up the current episode
     /// </summary>
-    protected virtual void SetupEpisode() {}
+    protected virtual void SetupEpisode() {
+        if(logger != null) {
+            logger.episode++;
+            logger.Log(Log());
+            if(logger.maxEpisode > 0 && logger.episode > logger.maxEpisode) {
+                Quit();
+            }
+        }
+    }
+
+    protected virtual String Log() { return null; }
 
     /// <summary>
     /// Remove all Agents from a scene
@@ -93,5 +110,13 @@ public class ABMController : MonoBehaviour {
 
     public void SetTeamId(ABMAgent a, int id) {
         a.GetComponent<BehaviorParameters>().TeamId = id;
+    }
+
+    private void Quit() {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 }

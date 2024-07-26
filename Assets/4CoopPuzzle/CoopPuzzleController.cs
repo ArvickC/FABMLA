@@ -21,6 +21,8 @@ public class CoopPuzzleController : ABMController {
     public Vector3 spawnMaxAgent;
 
     private SimpleMultiAgentGroup agentGroup = new SimpleMultiAgentGroup();
+    int step;
+    bool success = false;
 
     protected override void Start() {
         base.Start();
@@ -28,8 +30,14 @@ public class CoopPuzzleController : ABMController {
     }
 
     protected override void EndCase() {
+        if(agentsOnPlate.Count == 1 && agentsOnTarget.Count == 1) {
+            AddGroupReward(10f);
+            EndEpisode();
+            return;
+        }
         bool isEnd = false;
         agents.ToList().ForEach(a => {
+            step = a.StepCount;
             if(isEnd) return;
             if(a.MaxStep > 0 && a.StepCount >= a.MaxStep) { isEnd = true; EndEpisode(true); } // Max stepcount reached
         });       
@@ -38,20 +46,16 @@ public class CoopPuzzleController : ABMController {
     protected override void CalculateReward(ABMAgent agent) {
         CoopPuzzleAgent a = (CoopPuzzleAgent)agent;
         if(a.onOnePlate) a.AddReward(0.005f);
-        //if(agentsOnPlate.Count > 1) a.AddReward(-0.1f);
-        //if(agentsOnTarget.Count > 1) a.AddReward(-0.1f);
+
         float z1 = agents[0].transform.localPosition.z;
         float z2 = agents[1].transform.localPosition.z;
+
         if(z1 < 0 && z2 < 0) a.AddReward(-0.001f);
         if(z1 > 0 && z2 > 0) a.AddReward(-0.001f);
-
-        if(agentsOnPlate.Count == 1 && agentsOnTarget.Count == 1) {
-            AddGroupReward(10f);
-            EndEpisode();
-        }
     }
 
     protected override void SetupEpisode() {
+        base.SetupEpisode();
         plate.transform.localPosition = new Vector3(
             Random.Range(spawnMin.x, spawnMax.x),
             Random.Range(spawnMin.y, spawnMax.y),
@@ -77,15 +81,16 @@ public class CoopPuzzleController : ABMController {
     }
 
     public void EndEpisode() {
+        success = true;
         agentGroup.EndGroupEpisode();
         SetupEpisode();
     }
 
     public void EndEpisode(bool interupt) {
         if(interupt) {
+            success = false;
             agentGroup.GroupEpisodeInterrupted();
         }
-        else EndEpisode();
         SetupEpisode();
     }
 
@@ -93,5 +98,9 @@ public class CoopPuzzleController : ABMController {
         yield return new WaitForSeconds(s);
         agents.ToList().ForEach(a => agentGroup.RegisterAgent(a));
         EndEpisode(true);
+    }
+
+    protected override System.String Log() {
+        return $"{step},{success}";
     }
 }
