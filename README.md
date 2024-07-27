@@ -14,11 +14,11 @@ FABMLA creates a real-time, 3D, ABM training environment and offers three key ad
 The innerworkings of FABMLA is inspired by the architecture of [ABMU](https://github.com/cheliotk/unity_abm_framework); the core concept we introduce is _Steps_, an approach that enables behavior to be repeated throughout an episode, a single iteration of a simulation. For example, an agent could move in a certain direction each _Step_ based on a custom algorithm. 
 
 # Installation and Getting Started
-## Clone Github
+### By Cloning Github
 Clone this github repository and open the project in Unity3D
-## Clone Core Components
+### Or By Cloning Core Components
 Navigate to the [Agent](https://github.com/ArvickC/FABMLA/blob/main/Assets/ABMAgent.cs) and [Controller](https://github.com/ArvickC/FABMLA/blob/main/Assets/ABMController.cs) files. Download and import them into your Unity3D project.
-### Logger (Optional)
+#### Logger (Optional)
 Additionally, you can import the [Logger](https://github.com/ArvickC/FABMLA/blob/main/Assets/ABMLogger.cs) class into your Unity3D project.
 ## Installing ML-Agents
 This framework is dependent on [ML-Agents](https://github.com/Unity-Technologies/ml-agent), follow the installation instructions [here](https://github.com/Unity-Technologies/ml-agents/blob/latest_release/docs/Installation.md).
