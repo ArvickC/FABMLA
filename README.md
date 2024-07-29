@@ -17,9 +17,9 @@ The inner workings of FABMLA is inspired by the architecture of [ABMU](https://g
 ### By Cloning Github
 Clone this github repository and open the project in Unity3D
 ### Or By Cloning Core Components
-Navigate to the [Agent](https://github.com/ArvickC/FABMLA/blob/main/Assets/ABMAgent.cs) and [Controller](https://github.com/ArvickC/FABMLA/blob/main/Assets/ABMController.cs) files. Download and import them into your Unity3D project.
+Navigate to the [latest release](https://github.com/ArvickC/FABMLA/releases). Download and import them into your Unity3D project.
 #### Logger (Optional)
-Additionally, you can import the [Logger](https://github.com/ArvickC/FABMLA/blob/main/Assets/ABMLogger.cs) class into your Unity3D project.
+Additionally, you can import the [Logger](https://github.com/ArvickC/FABMLA/wiki/Logger) class into your Unity3D project.
 ## Installing ML-Agents
 This framework is dependent on [ML-Agents](https://github.com/Unity-Technologies/ml-agent), follow the installation instructions [here](https://github.com/Unity-Technologies/ml-agents/blob/latest_release/docs/Installation.md).
 
