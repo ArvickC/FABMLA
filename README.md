@@ -1,7 +1,7 @@
 # FABMLA
 > A **F**ramework for **A**gent-**B**ased Modeling with **M**achine **L**earning **A**gents
 
-FABMLA is a framework that allows for Agent-Based Modeling powered by Machine Leanring in [Unity3D](https://unity.com/)
+FABMLA is a framework that allows for Agent-Based Modeling powered by Machine Learining in [Unity3D](https://unity.com/)
 
 FABMLA creates a real-time, 3D, ABM training environment and offers three key advantages: 
 
@@ -9,9 +9,9 @@ FABMLA creates a real-time, 3D, ABM training environment and offers three key ad
 
 (2), FABMLA supports generalization — its abstract nature obfuscates internal methods, enabling compatibility with any agent behavior or type. 
 
-(3), its integration with Unity3D provides unique features, allowing utilization of in-built Unity features such as 3D rendering, AI pathfinding, and physics engines which are the backbones to 3D simulations. Additionally, those familiar with Unity3D environment and `C#` should find FABMLA straightforward.
+(3), its integration with Unity3D provides unique features, allowing utilization of in-built Unity features such as 3D rendering, AI pathfinding, and physics engines which are the backbones of 3D simulations. Additionally, those familiar with Unity3D environment and `C#` should find FABMLA straightforward.
 
-The innerworkings of FABMLA is inspired by the architecture of [ABMU](https://github.com/cheliotk/unity_abm_framework); the core concept we introduce is _Steps_, an approach that enables behavior to be repeated throughout an episode, a single iteration of a simulation. For example, an agent could move in a certain direction each _Step_ based on a custom algorithm. 
+The inner workings of FABMLA is inspired by the architecture of [ABMU](https://github.com/cheliotk/unity_abm_framework); the core concept we introduce is _Steps_, an approach that enables behavior to be repeated throughout an episode, a single iteration of a simulation. For example, an agent could move in a certain direction each _Step_ based on a custom algorithm. 
 
 # Installation and Getting Started
 ### By Cloning Github
