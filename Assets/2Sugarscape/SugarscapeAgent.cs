@@ -58,16 +58,29 @@ public class SugarscapeAgent : ABMAgent {
         return (Math.Abs(transform.localPosition.x + x) <= 8 && Math.Abs(transform.localPosition.y + y) <= 8);
     }
 
-    public override void Step() {
+    public override void Step()
+    {
         base.Step();
-
-        int a = actions.DiscreteActions[0];
-
-        if(a == 0) this.transform.localPosition += Vector3.up;
-        if(a == 1) this.transform.localPosition += Vector3.down;
-        if(a == 2) this.transform.localPosition += Vector3.left;
-        if(a == 3) this.transform.localPosition += Vector3.right;
-
+        MoveBasedOnAction(actions.DiscreteActions[0]);
+        DecreaseSugar();
+    }
+    
+    private void MoveBasedOnAction(int action)
+    {
+        Vector3 movement = action switch
+        {
+            0 => Vector3.up,
+            1 => Vector3.down,
+            2 => Vector3.left,
+            3 => Vector3.right,
+            _ => Vector3.zero
+        };
+    
+        transform.localPosition += movement;
+    }
+    
+    private void DecreaseSugar()
+    {
         sugar -= metabolism;
     }
 
