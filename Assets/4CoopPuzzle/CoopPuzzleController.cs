@@ -54,26 +54,49 @@ public class CoopPuzzleController : ABMController {
         if(z1 > 0 && z2 > 0) a.AddReward(-0.001f);
     }
 
-    protected override void SetupEpisode() {
+    protected override void SetupEpisode()
+    {
         base.SetupEpisode();
-        plate.transform.localPosition = new Vector3(
-            Random.Range(spawnMin.x, spawnMax.x),
-            Random.Range(spawnMin.y, spawnMax.y),
-            Random.Range(spawnMin.z, spawnMax.z)
-        ); // Spawn plate randomly
-        target.transform.localPosition = new Vector3(
-            Random.Range(spawnMin.x, spawnMax.x),
-            Random.Range(spawnMin.y, spawnMax.y),
-            Random.Range(-spawnMin.z, -spawnMax.z)
-        ); // Spawn plate randomly
-        agents.ToList().ForEach(a => {
-            a.transform.localPosition = new Vector3(
-                Random.Range(spawnMinAgent.x, spawnMaxAgent.x),
-                Random.Range(spawnMinAgent.y, spawnMaxAgent.y),
-                Random.Range(spawnMinAgent.z, spawnMaxAgent.z)                
-            );
-            a.transform.localRotation = Quaternion.AngleAxis(Random.Range(0f,360f), Vector3.up);
-        });
+        SpawnPlate();
+        SpawnTarget();
+        SpawnAgents();
+    }
+    
+    private void SpawnPlate()
+    {
+        plate.transform.localPosition = GetRandomPosition(spawnMin, spawnMax);
+    }
+    
+    private void SpawnTarget()
+    {
+        Vector3 targetSpawnMin = new Vector3(spawnMin.x, spawnMin.y, -spawnMax.z);
+        Vector3 targetSpawnMax = new Vector3(spawnMax.x, spawnMax.y, -spawnMin.z);
+        target.transform.localPosition = GetRandomPosition(targetSpawnMin, targetSpawnMax);
+    }
+    
+    private void SpawnAgents()
+    {
+        agents.ToList().ForEach(SpawnAgent);
+    }
+    
+    private void SpawnAgent(ABMAgent agent)
+    {
+        agent.transform.localPosition = GetRandomPosition(spawnMinAgent, spawnMaxAgent);
+        agent.transform.localRotation = GetRandomRotation();
+    }
+    
+    private Vector3 GetRandomPosition(Vector3 min, Vector3 max)
+    {
+        return new Vector3(
+            Random.Range(min.x, max.x),
+            Random.Range(min.y, max.y),
+            Random.Range(min.z, max.z)
+        );
+    }
+    
+    private Quaternion GetRandomRotation()
+    {
+        return Quaternion.AngleAxis(Random.Range(0f, 360f), Vector3.up);
     }
 
     public void AddGroupReward(float r) {

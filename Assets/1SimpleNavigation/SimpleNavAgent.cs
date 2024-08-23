@@ -24,19 +24,35 @@ public class SimpleNavAgent : ABMAgent {
         sensor.AddObservation(controller.GetComponent<SimpleNavController>().target.transform.localPosition); // Vector3 -> 3
     }
 
-    public override void Step() {
+    public override void Step()
+    {
         base.Step();
-        
-        Vector3 controlSignal = Vector3.zero;
-        // 3 continuous actions
-        controlSignal.x = actions.ContinuousActions[0];
-        controlSignal.y = actions.ContinuousActions[1];
-        controlSignal.z = actions.ContinuousActions[2];
+        ApplyControlSignal();
+    }
+    
+    private void ApplyControlSignal()
+    {
+        Vector3 controlSignal = new Vector3(
+            actions.ContinuousActions[0],
+            actions.ContinuousActions[1],
+            actions.ContinuousActions[2]
+        );
         rb.AddForce(controlSignal * 10f);
     }
-
-    private void ResetAgent() {
+    
+    private void ResetAgent()
+    {
+        ResetPosition();
+        ResetVelocity();
+    }
+    
+    private void ResetPosition()
+    {
         this.transform.localPosition = Vector3.zero;
+    }
+    
+    private void ResetVelocity()
+    {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
