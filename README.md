@@ -1,7 +1,13 @@
 # FABMLA
 > A **F**ramework for **A**gent-**B**ased Modeling with **M**achine **L**earning **A**gents
 
-FABMLA is a framework that allows for Agent-Based Modeling powered by Machine Learning in [Unity3D](https://unity.com/)
+# Publication
+Research Paper: [FABMLA Paper.pdf](https://github.com/user-attachments/files/20878035/Chandnani_Arvick-Paper.pdf)
+Research Poster: [FABMLA Poster.pdf](https://github.com/user-attachments/files/20878042/Chandnani_Arvick-Poster.pdf)
+Presentation: (Link in progress)
+
+# Description
+FABMLA is a framework that allows for Agent-Based Modeling powered by Machine Learning in [Unity3D](https://unity.com/). This is a collaborative project with Emma Brown for research internship in UCSB's 2024 Research Mentorship Program.
 
 FABMLA creates a real-time, 3D, ABM training environment and offers three key advantages: 
 
